@@ -1,0 +1,39 @@
+/* Manual de marca Quirama Studio: Red Hat Display (Bold títulos / Light textos) */
+@font-face {
+  font-family: "Red Hat Display";
+  src: url("RedHatDisplay-Variable.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+}
+:root {
+  --morado: #662D91;
+  --azul: #334999;
+  --cian: #5EF2D6; /* tono del degradado de fondo del manual */
+  --negro: #000;
+  --blanco: #fff;
+  --degradado: linear-gradient(135deg, var(--cian) 0%, var(--azul) 55%, var(--morado) 100%);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body { font-family: "Red Hat Display", system-ui, sans-serif; font-weight: 300; }
+img { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+/* Visor (alternativas 2 y 3) */
+.visor { position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; border: 0;
+  background: #000; color: #fff; display: none; place-items: center; }
+.visor[open] { display: grid; }
+.visor::backdrop { background: transparent; }
+.visor img { max-width: 100vw; max-height: 86svh; object-fit: contain; }
+.visor .pie { position: absolute; bottom: 16px; left: 16px; right: 16px; display: flex; justify-content: space-between;
+  font-size: 14px; letter-spacing: .08em; text-transform: uppercase; }
+.visor .pie b { font-weight: 700; }
+.visor .cerrar { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; font-size: 28px; }
+.visor .ant, .visor .sig { position: absolute; top: 0; bottom: 0; width: 30%; font-size: 0; }
+.visor .ant { left: 0; } .visor .sig { right: 0; }
+/* Flechas visibles en escritorio */
+@media (hover: hover) and (min-width: 720px) {
+  .visor .ant, .visor .sig { font-size: 64px; font-weight: 300; width: 80px; opacity: .6; }
+  .visor .ant:hover, .visor .sig:hover { opacity: 1; }
+  .visor img { max-width: calc(100vw - 180px); }
+}

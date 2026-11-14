@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quirama Studio — Fotografía de conciertos</title>
+<meta name="description" content="Portafolio de fotografía de conciertos, retratos y sesiones de banda por Quirama Studio.">
+<meta property="og:title" content="Quirama Studio — Fotografía de conciertos">
+<meta property="og:description" content="Conciertos, retratos y sesiones de banda.">
+<meta property="og:image" content="fotos/DSC04208.jpg">
+<meta name="theme-color" content="#662D91">
+<link rel="icon" href="assets/isologo-morado.png">
+<link rel="stylesheet" href="assets/marca.css">
+<style>
+  html, body { background: #0c0716; color: #fff; }
+  .app { max-width: 1440px; margin: 0 auto; min-height: 100svh; }
+
+  /* Portada */
+  .hero { position: relative; overflow: hidden; padding: 28px 20px 36px; background: var(--degradado); border-radius: 0 0 28px 28px; }
+  .hero::before { content: ""; position: absolute; inset: 0; background: url("assets/patron-blanco.png") 0 0 / 220px; opacity: .14; }
+  .hero > * { position: relative; }
+  .hero .logo { width: 150px; }
+  .hero .iso { display: none; }
+  .hero h1 { margin-top: 64px; font-weight: 700; font-size: clamp(46px, 14vw, 76px); line-height: .9; letter-spacing: -.02em; }
+  .hero p { margin-top: 14px; font-size: 18px; max-width: 26ch; }
+  .datos { display: flex; gap: 28px; margin-top: 28px; }
+  .datos b { display: block; font-weight: 700; font-size: 30px; line-height: 1; }
+  .datos span { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+
+  /* Filtros */
+  .filtros { position: sticky; top: 0; z-index: 2; display: flex; gap: 8px; overflow-x: auto; padding: 14px 16px;
+    background: rgba(12,7,22,.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); scrollbar-width: none; }
+  .filtros button { flex: none; padding: 10px 18px; border-radius: 999px; border: 1.5px solid #ffffff40; font-size: 14px; font-weight: 500; }
+  .filtros button:hover { border-color: #fff; }
+  .filtros button[aria-pressed="true"] { background: var(--morado); border-color: var(--morado); font-weight: 700; }
+
+  /* Rejilla */
+  .muro { columns: 2; column-gap: 10px; padding: 6px 16px 16px; }
+  .muro button { display: block; width: 100%; margin-bottom: 10px; break-inside: avoid; border-radius: 14px; overflow: hidden; position: relative; }
+  .muro img { width: 100%; height: auto; transition: transform .4s; }
+  .muro button:hover img { transform: scale(1.04); }
+  .muro button::after { content: attr(data-cat); position: absolute; left: 8px; bottom: 8px; padding: 4px 9px; border-radius: 999px;
+    background: rgba(0,0,0,.55); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .muro button:focus-visible { outline: 3px solid var(--cian); outline-offset: 2px; }
+
+  /* Contacto */
+  footer { margin: 28px 16px calc(24px + env(safe-area-inset-bottom)); padding: 32px 22px; border-radius: 28px; background: var(--morado);
+    position: relative; overflow: hidden; }
+  footer .iso { position: absolute; right: -40px; bottom: -40px; width: 200px; opacity: .25; }
+  footer h2 { position: relative; font-weight: 700; font-size: 34px; line-height: 1; max-width: 12ch; }
+  .botones { position: relative; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; border-radius: 999px; font-weight: 700; text-decoration: none;
+    background: #fff; color: var(--morado); }
+  .btn.borde { background: none; color: #fff; border: 1.5px solid #fff; }
+  .btn img { width: 20px; height: 20px; }
+  .btn.borde img, .wa img { filter: invert(1); }
+  footer .correo { position: relative; margin-top: 18px; font-size: 15px; word-break: break-all; }
+  footer .correo a { color: #fff; }
+
+  /* WhatsApp flotante */
+  .wa { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 3; width: 58px; height: 58px; border-radius: 50%;
+    display: grid; place-items: center; background: #25D366; box-shadow: 0 6px 20px rgba(0,0,0,.4); transition: transform .2s; }
+  .wa:hover { transform: scale(1.08); }
+  .wa img { width: 30px; height: 30px; }
+
+  /* Escritorio */
+  @media (min-width: 720px) {
+    .muro { columns: 3; column-gap: 14px; padding: 8px 24px 24px; }
+    .muro button { margin-bottom: 14px; }
+    .filtros { padding: 16px 24px; }
+    footer { margin: 40px 24px 32px; }
+  }
+  @media (min-width: 1024px) {
+    .hero { margin: 0 24px; padding: 40px 56px 56px; border-radius: 0 0 40px 40px; display: grid; grid-template-columns: 1fr auto; align-items: end; column-gap: 48px; }
+    .hero .logo { grid-column: 1 / -1; width: 180px; }
+    .hero .iso { display: block; grid-row: 2 / 5; grid-column: 2; width: min(28vw, 360px); opacity: .9; align-self: center; }
+    .hero h1 { margin-top: 96px; font-size: clamp(72px, 7.5vw, 120px); }
+    .hero p { font-size: 22px; max-width: 32ch; }
+    .datos { gap: 48px; margin-top: 40px; }
+    .datos b { font-size: 44px; }
+    .filtros { justify-content: center; padding: 20px 24px; }
+    .filtros button { padding: 12px 24px; font-size: 15px; }
+    .muro { columns: 4; column-gap: 16px; padding: 8px 40px 24px; }
+    .muro button { margin-bottom: 16px; border-radius: 18px; }
+    footer { margin: 56px 40px 40px; padding: 56px; border-radius: 40px; display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 40px; }
+    footer h2 { font-size: 56px; max-width: 14ch; }
+    footer .botones { grid-column: 2; grid-row: 1; margin-top: 0; justify-content: flex-end; }
+    footer .correo { grid-column: 1 / -1; }
+    footer .iso { width: 320px; right: -60px; bottom: -80px; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <section class="hero">
+    <img class="logo" src="assets/logo-blanco.png" alt="Quirama Studio">
+    <img class="iso" src="assets/isologo-blanco.png" alt="">
+    <h1>La música se ve así.</h1>
+    <p>Fotografía de conciertos, retratos y sesiones de banda.</p>
+    <div class="datos" id="datos"></div>
+  </section>
+  <nav class="filtros" id="filtros" aria-label="Filtrar fotos"></nav>
+  <main class="muro" id="muro"></main>
+  <footer id="contacto">
+    <img class="iso" src="assets/isologo-blanco.png" alt="">
+    <h2>¿Cubrimos tu próximo show?</h2>
+    <div class="botones">
+      <a class="btn" data-wa target="_blank" rel="noopener"><img src="assets/whatsapp.svg" alt="">WhatsApp</a>
+      <a class="btn borde" href="https://instagram.com/yonosoy_quirama" target="_blank" rel="noopener"><img src="assets/instagram.svg" alt="">@yonosoy_quirama</a>
+    </div>
+    <p class="correo"><a href="mailto:quiramastudio@gmail.com">quiramastudio@gmail.com</a></p>
+  </footer>
+</div>
+<a class="wa" data-wa target="_blank" rel="noopener" aria-label="Escríbeme por WhatsApp"><img src="assets/whatsapp.svg" alt=""></a>
+<script src="assets/fotos.js"></script>
+<script src="assets/visor.js"></script>
+<script>
+  const WHATSAPP = "573042003055"; // número con indicativo, sin + ni espacios
+  const MENSAJE = "Hola Quirama Studio, vi tu portafolio y quiero cotizar una cobertura.";
+  document.querySelectorAll("[data-wa]").forEach((a) => (a.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(MENSAJE)}`));
+
+  const muro = document.getElementById("muro"), filtros = document.getElementById("filtros");
+  document.getElementById("datos").innerHTML = Object.entries(CATS)
+    .map(([c, n]) => `<div><b>${FOTOS.filter((p) => p.cat === c).length}</b><span>${n}</span></div>`).join("");
+
+  function mostrar(cat) {
+    const lista = cat ? FOTOS.filter((p) => p.cat === cat) : FOTOS;
+    muro.innerHTML = "";
+    lista.forEach((p, i) => {
+      const b = document.createElement("button");
+      b.dataset.cat = CATS[p.cat];
+      b.innerHTML = `<img loading="lazy" src="${RUTA + p.f}" alt="${p.alt}">`;
+      b.onclick = () => abrirVisor(lista, i);
+      muro.appendChild(b);
+    });
+    filtros.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", x.dataset.cat === (cat || "")));
+  }
+  [["", "Todo"], ...Object.entries(CATS)].forEach(([c, n]) => {
+    const b = document.createElement("button");
+    b.dataset.cat = c; b.textContent = n; b.onclick = () => mostrar(c);
+    filtros.appendChild(b);
+  });
+  mostrar("");
+</script>
+</body>
+</html>
